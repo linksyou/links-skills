@@ -1,0 +1,9 @@
+{
+  "name": "product-ui-craft-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Dependencies for ui-audit.mjs when the project being checked has no playwright of its own.",
+  "dependencies": {
+    "playwright": "^1.50.0"
+  }
+}

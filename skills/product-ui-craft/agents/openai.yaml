@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product UI Craft"
+  short_description: "Settle structure and visual direction per scenario, build with proven components, and test in real browsers before delivery"
+  default_prompt: "Use $product-ui-craft to design and build the interface below. First work out which scenario it is, pick a visual direction and tell me, and test it in a browser before handing over."
