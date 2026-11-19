@@ -1,524 +1,129 @@
 <!doctype html>
 <html lang="en">
-  <meta charset="utf-8" /><meta
-    name="viewport"
-    content="width=device-width,initial-scale=1"
-  /><title>Marginalia — Research desk</title
-  ><style>
-    :root {
-      --plum: #342138;
-      --ink: #302338;
-      --muted: #685c6c;
-      --pale: #f1edf4;
-      --rule: #d9d3dc;
-      --paper: #fffefd;
-      --serif: Baskerville, Georgia, serif;
-    }
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      color: var(--ink);
-      font:
-        15px/1.45 -apple-system,
-        BlinkMacSystemFont,
-        Arial,
-        sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    a,
-    button {
-      color: inherit;
-      font: inherit;
-    }
-    a {
-      text-decoration: none;
-    }
-    button {
-      cursor: pointer;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    a:focus-visible,
-    button:focus-visible,
-    summary:focus-visible {
-      outline: 2px solid #b97bc1;
-      outline-offset: 3px;
-    }
-    h1,
-    h2,
-    h3,
-    p,
-    figure,
-    blockquote {
-      margin: 0;
-    }
-    .app {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 218px 1fr;
-    }
-    .rail {
-      background: var(--plum);
-      color: #fff8ff;
-      padding: 27px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 34px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font: 30px/0.95 var(--serif);
-      letter-spacing: -0.05em;
-    }
-    .star {
-      width: 30px;
-      height: 30px;
-      flex-shrink: 0;
-    }
-    .rail nav {
-      display: grid;
-      gap: 3px;
-    }
-    .rail nav a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 5px;
-      color: #f0e5f0;
-      font-size: 14px;
-    }
-    .rail nav a:first-child {
-      background: #513957;
-    }
-    .icon {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .small {
-      font:
-        11px/1.4 Menlo,
-        monospace;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .outline {
-      padding: 24px 5px;
-      border-top: 1px solid #654c68;
-    }
-    .outline .small {
-      color: #d1bcd5;
-    }
-    .outline a {
-      display: block;
-      font-size: 13px;
-      color: #ebdfed;
-      line-height: 1.4;
-      padding: 9px 0;
-    }
-    .outline a:first-of-type {
-      margin-top: 12px;
-    }
-    .profile {
-      margin-top: auto;
-      border-top: 1px solid #614a64;
-      padding-top: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-    }
-    .avatar {
-      border-radius: 50%;
-      background: #e6d8de;
-      color: #553d53;
-      padding: 7px 9px;
-      font: 16px var(--serif);
-    }
-    .desk {
-      min-width: 0;
-    }
-    .top {
-      height: 72px;
-      padding: 0 4%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--rule);
-      font-size: 13px;
-    }
-    .top span,
-    .saved {
-      color: var(--muted);
-    }
-    .saved {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .cols {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(298px, 30%);
-      min-height: calc(100vh - 72px);
-    }
-    article {
-      padding: 48px clamp(24px, 4vw, 88px) 36px;
-      background: var(--paper);
-    }
-    .kicker {
-      color: #72616e;
-    }
-    .title {
-      font: normal clamp(50px, 4.9vw, 83px)/0.96 var(--serif);
-      letter-spacing: -0.053em;
-      margin: 16px 0 14px;
-    }
-    .title em {
-      font-weight: 400;
-    }
-    .deck {
-      font: 18px/1.4 var(--serif);
-      color: #6e606c;
-    }
-    .folio {
-      margin: 24px 0 25px;
-    }
-    .plate {
-      position: relative;
-      background: #f5e7cf;
-      overflow: hidden;
-    }
-    .plate img {
-      display: block;
-      width: 100%;
-      height: clamp(250px, 37vh, 400px);
-      object-fit: cover;
-      object-position: center 45%;
-    }
-    .folio figcaption {
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      padding-top: 7px;
-      font: italic 14px var(--serif);
-    }
-    .folio figcaption .small {
-      font-style: normal;
-    }
-    .prose {
-      font:
-        20px/1.54 Georgia,
-        serif;
-    }
-    .prose mark {
-      color: var(--ink);
-      background: #e8dded;
-      padding: 1px 2px;
-    }
-    .ref {
-      font:
-        12px Menlo,
-        monospace;
-      color: #70487b;
-      vertical-align: super;
-    }
-    .footnote {
-      border-top: 1px solid var(--rule);
-      padding-top: 8px;
-      margin-top: 16px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .inspector {
-      background: var(--pale);
-      border-left: 1px solid var(--rule);
-      padding: 40px 26px;
-      color: #392e3c;
-    }
-    .agent-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #705479;
-    }
-    .agent-label .star {
-      width: 20px;
-      height: 20px;
-    }
-    .inspector h2 {
-      font: normal 37px/1.05 var(--serif);
-      letter-spacing: -0.05em;
-      margin: 16px 0 10px;
-    }
-    .description {
-      color: #655a69;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .source {
-      margin: 26px 0 16px;
-      padding: 20px;
-      background: #fffdf8;
-      border: 1px solid #d4cbd4;
-      border-radius: 4px;
-    }
-    .source .small {
-      color: #745f77;
-    }
-    .source blockquote {
-      font: italic 27px/1.18 var(--serif);
-      letter-spacing: -0.025em;
-      margin: 18px 0 24px;
-    }
-    .byline {
-      border-top: 1px solid #ded6d8;
-      padding-top: 12px;
-      font-size: 13px;
-    }
-    .byline small {
-      font-size: 12px;
-      display: block;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .insert {
-      width: 100%;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      border: 0;
-      background: var(--plum);
-      color: #fff;
-      border-radius: 4px;
-      font-weight: 550;
-      font-size: 14px;
-    }
-    .insert:hover {
-      background: #53375b;
-    }
-    details {
-      margin-top: 18px;
-      border-bottom: 1px solid var(--rule);
-      padding-bottom: 14px;
-      font-size: 13px;
-    }
-    summary {
-      cursor: pointer;
-      color: #55465b;
-      padding: 4px 0;
-    }
-    details p {
-      margin-top: 10px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .status {
-      font-size: 13px;
-      margin: 12px 0;
-      color: var(--muted);
-    }
-    @media (min-width: 1600px) {
-      article {
-        max-width: 960px;
-        justify-self: center;
-        width: 100%;
-      }
-    }
-    @media (max-width: 1100px) {
-      .app {
-        grid-template-columns: 165px 1fr;
-      }
-      .rail {
-        padding-inline: 12px;
-      }
-      .brand {
-        font-size: 24px;
-      }
-      .cols {
-        grid-template-columns: minmax(0, 1fr) 280px;
-      }
-      article {
-        padding-inline: 26px;
-      }
-      .inspector {
-        padding-inline: 20px;
-      }
-    }
-    @media (max-width: 780px) {
-      .app {
-        display: block;
-      }
-      .rail {
-        padding: 14px 20px;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-      }
-      .rail nav,
-      .outline {
-        display: none;
-      }
-      .profile {
-        margin: 0;
-        padding: 0;
-        border: 0;
-      }
-      .top {
-        height: 50px;
-        padding: 0 20px;
-      }
-      .cols {
-        display: block;
-      }
-      .inspector {
-        border: 0;
-        border-top: 1px solid var(--rule);
-        padding: 24px;
-      }
-      .title {
-        font-size: 52px;
-      }
-      article {
-        padding: 28px 20px;
-      }
-      .folio {
-        margin: 18px 0;
-      }
-      .source {
-        margin: 16px 0;
-      }
-      .plate img {
-        height: 210px;
-      }
-    }
-  </style>
-  <svg style="display: none" xmlns="http://www.w3.org/2000/svg">
-    <symbol id="aster" viewBox="0 0 32 32">
-      <g fill="none" stroke="currentColor" stroke-width="2">
-        <path
-          d="M16 1v30M1 16h30M5.4 5.4l21.2 21.2M26.6 5.4L5.4 26.6M10.2 2.1l11.6 27.8M2.1 21.8L29.9 10.2M2.1 10.2l27.8 11.6M10.2 29.9L21.8 2.1"
-        />
-      </g>
-    </symbol>
-    <symbol id="book" viewBox="0 0 24 24">
-      <path
-        d="M3 5c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 1-3-2-6-2-9-1zM12 6v14"
-      />
-    </symbol>
-    <symbol id="paper" viewBox="0 0 24 24">
-      <path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7m-7 4h5" />
-    </symbol>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Marginalia — Reading room traffic</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="traffic.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="mark" viewBox="0 0 40 40">
+        <path fill="#484b98" d="M2 9.5 12 5l8.2 6.6V35l-9.3-7.2L2 30.9z"/>
+        <path fill="#7679c6" d="m12 5 8.2 6.6L29 5v22.4L20.2 35l-8.2-7.5z"/>
+        <path fill="#45478c" d="M20.2 11.6 29 5v22.4L20.2 35z"/>
+        <path fill="#6669b6" d="m29 5 9 4.1v21.3l-9-3z"/>
+      </symbol>
+      <!-- Lucide icons, see LICENSE-lucide.txt -->
+      <symbol id="square-pen" viewBox="0 0 24 24"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></symbol>
+      <symbol id="search-icon" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+      <symbol id="files" viewBox="0 0 24 24"><path d="M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/><path d="M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z"/><path d="M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1"/></symbol>
+      <symbol id="folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
+      <symbol id="panel-left" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol>
+      <symbol id="download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol>
+      <symbol id="plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+      <symbol id="chart-no-axes-combined" viewBox="0 0 24 24"><path d="M12 16v5"/><path d="M16 14.639V21"/><path d="M20 10.656V21"/><path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15"/><path d="M4 18.463V21"/><path d="M8 14.656V21"/></symbol>
+      <symbol id="arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+      <symbol id="x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+      <symbol id="file-spreadsheet" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M8 13h2"/><path d="M14 13h2"/><path d="M8 17h2"/><path d="M14 17h2"/></symbol>
+      <symbol id="copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+      <symbol id="thumbs-up" viewBox="0 0 24 24"><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/><path d="M7 10v12"/></symbol>
+      <symbol id="thumbs-down" viewBox="0 0 24 24"><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/><path d="M17 14V2"/></symbol>
+      <symbol id="table-2" viewBox="0 0 24 24"><path d="M3 9h18"/><path d="M9 3v18"/><rect x="3" y="3" width="18" height="18" rx="2"/></symbol>
+      <symbol id="chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+      <symbol id="check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    </defs>
   </svg>
-  <div class="app">
-    <aside class="rail">
-      <a class="brand" href="#draft"
-        ><svg class="star"><use href="#aster" /></svg>Marginalia</a
-      >
-      <nav>
-        <a href="#draft"
-          ><svg class="icon"><use href="#book" /></svg>Research desk</a
-        ><a href="#source"
-          ><svg class="icon"><use href="#paper" /></svg>Source notes</a
-        >
-      </nav>
-      <div class="outline">
-        <div class="small">In this essay</div>
-        <a href="#draft">Gardens at the edge</a
-        ><a href="#figure">Plate I · Sea holly</a
-        ><a href="#passage">A shifting shoreline</a>
+  <div class="app" id="shell">
+    <aside class="rail" id="rail" aria-label="Workspace navigation">
+      <div class="rail-top">
+        <div class="brand"><svg class="brand-icon" aria-hidden="true"><use href="#mark"/></svg><span>Marginalia</span></div>
+        <nav class="tools" aria-label="Chat tools">
+          <button class="new-chat" id="new-chat"><svg class="ic"><use href="#square-pen"/></svg>New chat</button>
+          <button id="search"><svg class="ic"><use href="#search-icon"/></svg>Search chats <kbd id="search-key">⌘ K</kbd></button>
+          <button id="sources"><svg class="ic"><use href="#files"/></svg>Source library</button>
+        </nav>
+        <div class="nav-group">
+          <h2>Projects</h2>
+          <button class="project-link" id="project"><svg class="ic"><use href="#folder"/></svg>Library study</button>
+        </div>
+        <div class="nav-group history">
+          <h2>Recent chats</h2>
+          <nav id="history" aria-label="Recent chats"></nav>
+        </div>
       </div>
-      <div class="profile"><span class="avatar">E</span>Eleanor Ward</div>
+      <div class="profile"><span class="avatar">JL</span><span><strong>Jules Lin</strong><small>Personal workspace</small></span></div>
     </aside>
-    <main class="desk">
-      <header class="top">
-        <div><span>Research desk &nbsp; / &nbsp;</span> Coastal gardens</div>
-        <div class="saved">Private draft</div>
+    <main class="workspace">
+      <header class="bar">
+        <button class="icon-button menu" aria-label="Open chat navigation" title="Open chat navigation" id="menu"><svg class="ic"><use href="#panel-left"/></svg></button>
+        <div class="breadcrumb"><svg class="ic folder" aria-hidden="true"><use href="#folder"/></svg><span class="project-name">Library study</span><span class="separator">/</span><h1 id="chat-title">Reading room traffic</h1></div>
+        <button class="export" id="export"><svg class="ic"><use href="#download"/></svg><span>Export chat</span></button>
       </header>
-      <div class="cols">
-        <article id="draft">
-          <div class="small kicker">Field essay &nbsp; / &nbsp; Botany</div>
-          <h1 class="title">Gardens <em>at the edge</em></h1>
-          <p class="deck">Notes on planting for a changing coast.</p>
-          <figure class="folio" id="figure">
-            <div class="plate">
-              <img
-                src="sea-holly.jpg"
-                alt="Botanical illustration of blue sea holly flowers, leaves and seeds"
-              />
-            </div>
-            <figcaption>
-              <span>Eryngium maritimum</span><span class="small">Plate I</span>
-            </figcaption>
-          </figure>
-          <p id="passage" class="prose">
-            On the edge of the dunes, sea holly grows where the wind strips the
-            soil bare.
-            <mark>Its deep roots anchor the plant in shifting sand.</mark
-            ><sup class="ref" id="reference"></sup> The silver leaves turn the
-            colour of the water at dusk.
-          </p>
-          <div id="footnote" class="footnote" hidden>
-            [1] Eleanor Ward, <i>Shoreline notebook</i>, p. 18.
+      <div class="scroll" id="scroll"><div class="reading thread" id="thread"></div></div>
+      <div class="dock">
+        <form class="composer reading" id="composer">
+          <label class="sr-only" for="prompt">Message Marginalia</label>
+          <div class="draft-file" id="draft-file" hidden></div>
+          <textarea id="prompt" rows="1" placeholder="Ask a follow-up…" spellcheck="false"></textarea>
+          <div class="compose-actions">
+            <button class="icon-button attach" type="button" id="attach" title="Attach a source from the library" aria-label="Attach a source from the library"><svg class="ic"><use href="#plus"/></svg></button>
+            <span class="mode"><svg class="ic" aria-hidden="true"><use href="#chart-no-axes-combined"/></svg>Data analysis</span>
+            <button type="submit" class="send" id="send" aria-label="Send message" title="Send message" disabled><svg class="ic"><use href="#arrow-up"/></svg></button>
           </div>
-        </article>
-        <aside class="inspector" id="source">
-          <div class="agent-label small">
-            <svg class="star"><use href="#aster" /></svg>Research agent
-          </div>
-          <h2>Source check</h2>
-          <p class="description">
-            One passage in your draft matches a note from the coastal archive.
-          </p>
-          <div class="source">
-            <div class="small">Source excerpt</div>
-            <blockquote>
-              “The long taproot holds the plant in place as the sand shifts
-              around it.”
-            </blockquote>
-            <div class="byline">
-              Shoreline notebook<small>Eleanor Ward · Page 18</small>
-            </div>
-          </div>
-          <button type="button" class="insert" id="insert">
-            Insert citation <span aria-hidden="true">↵</span>
-          </button>
-          <p class="status" id="status" aria-live="polite"></p>
-          <details>
-            <summary>View notebook entry</summary>
-            <p>
-              Sea holly, north dune. The long taproot holds the plant in place
-              as the sand shifts around it. Leaves are waxy and pale on the
-              exposed side of the ridge.
-            </p>
-          </details>
-        </aside>
+        </form>
       </div>
     </main>
   </div>
-  <script>
-    const insert = document.querySelector("#insert");
-    const footnote = document.querySelector("#footnote");
-    insert.addEventListener("click", () => {
-      const adding = footnote.hidden;
-      footnote.hidden = !adding;
-      document.querySelector("#reference").textContent = adding ? "[1]" : "";
-      document.querySelector("#status").textContent = adding
-        ? "Citation added to the draft."
-        : "Citation removed.";
-      insert.textContent = adding ? "Undo citation" : "Insert citation ↵";
-    });
+  <dialog id="drawer" class="drawer" aria-label="Chat navigation"></dialog>
+  <dialog id="panel" class="panel" aria-labelledby="panel-title">
+    <div class="panel-head"><h2 id="panel-title"></h2><form method="dialog"><button class="icon-button" aria-label="Close" title="Close"><svg class="ic"><use href="#x"/></svg></button></form></div>
+    <div id="panel-body"></div>
+  </dialog>
+  <div id="notice" class="sr-only" role="status" aria-live="polite"></div>
+  <template id="file-template">
+    <button class="file" type="button" data-action="file">
+      <span class="file-icon"><svg class="ic"><use href="#file-spreadsheet"/></svg></span><span><strong>reading-room.csv</strong><small>CSV spreadsheet</small></span>
+    </button>
+  </template>
+  <template id="answer-template">
+    <article class="reply">
+      <div class="speaker"><span class="assistant-mark"><svg aria-hidden="true"><use href="#mark"/></svg></span><strong>Marginalia</strong></div>
+      <div class="reply-content"></div>
+      <div class="message-tools" aria-label="Response actions">
+        <button type="button" class="icon-button" aria-label="Copy answer" title="Copy answer" data-action="copy"><svg class="ic"><use href="#copy"/></svg></button>
+        <button type="button" class="icon-button" aria-label="Helpful answer" title="Helpful answer" aria-pressed="false" data-action="helpful"><svg class="ic"><use href="#thumbs-up"/></svg></button>
+        <button type="button" class="icon-button" aria-label="Unhelpful answer" title="Unhelpful answer" aria-pressed="false" data-action="unhelpful"><svg class="ic"><use href="#thumbs-down"/></svg></button>
+      </div>
+    </article>
+  </template>
+  <template id="chart-template">
+    <figure class="chart">
+      <div class="chart-head">
+        <div><h3>Reading room visits</h3><p>Average visitors by hour</p></div>
+        <div class="legend"><span><i class="line weekday"></i>Weekdays</span><span><i class="line weekend"></i>Weekends</span></div>
+      </div>
+      <svg class="plot" aria-label="Line chart of average weekday and weekend visits" role="img"></svg>
+      <figcaption><button type="button" class="data-link" data-action="file"><svg class="ic"><use href="#table-2"/></svg>View source data <svg class="ic go"><use href="#chevron-right"/></svg></button></figcaption>
+    </figure>
+  </template>
+  <script type="text/csv" id="dataset">
+hour,weekday,weekend
+08:00,12,7
+09:00,28,14
+10:00,47,24
+11:00,64,38
+12:00,72,55
+13:00,68,73
+14:00,54,86
+15:00,45,82
+16:00,34,67
+17:00,22,46
+18:00,12,24
   </script>
+</body>
 </html>

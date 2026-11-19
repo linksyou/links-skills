@@ -12,16 +12,16 @@
 
 ## product-ui-craft 效果示例
 
-### Atelier Serein · 建筑事务所官网
+### Serein Research · 机器视觉研究实验室官网
 
-首页以一幅陶土色海岸庭院的全景图介绍 Casa Marea。项目标题、地点和项目手记入口叠在照片下沿，向下阅读即可看到建筑师如何围绕一棵松树组织庭院。
+首页用一句「How machines learn to see」点出研究方向，右侧的凸透镜图版把光线折射画了出来。点开下方的研究论文或实验手记，可以读到对应的实验方法。
 
-![Atelier Serein 首页，暖白刊头下是 Casa Marea 的海岸庭院](examples/product-ui-craft/atelier-serein/preview.png)
+![Serein Research 官网首页，左侧为衬线标题，右侧为橙红色凸透镜光学图版，下方列出两篇研究文章](examples/product-ui-craft/atelier-serein/preview.png)
 
-### Marginalia · 引文核对 Agent
+### Marginalia · 数据分析对话助手
 
-编辑阅读植物随笔时，可以对照正文中高亮的句子和右栏的笔记摘录。展开笔记可读上下文，点击「Insert citation」会将引文编号和脚注插入稿件，也可以撤销。
+读者在对话里附上一份阅览室客流表，问工作日和周末分别几点最忙。Marginalia 用两条折线标出高峰时段。点击「View source data」能核对原始数值，也可以在输入框里接着问某个时段的客流。
 
-![Marginalia 研究工作台，海蓟图版和随笔居中，右侧是引文核对面板](examples/product-ui-craft/marginalia/preview.png)
+![Marginalia 对话界面，侧栏列出历史会话，主栏用折线图比较工作日中午和周末下午两点的阅览室客流高峰](examples/product-ui-craft/marginalia/preview.png)
 
-两张效果图均来自按本技能设计的 HTML 原型。下载仓库后，在任一示例目录双击 `index.html` 即可体验。建筑场景和植物插画为生成素材，项目、稿件和引用均为虚构示例。[官网原型](examples/product-ui-craft/atelier-serein/) · [Agent 原型](examples/product-ui-craft/marginalia/)
+两张图均为浏览器实截。下载仓库后，双击示例目录里的 `index.html` 即可离线体验。实验室、论文和客流数据均为虚构示例，光学主图由 ImageGen 生成。对话回答由原型在本地计算。[官网原型](examples/product-ui-craft/atelier-serein/) · [对话产品原型](examples/product-ui-craft/marginalia/)
