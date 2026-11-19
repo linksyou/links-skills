@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Atelier Serein — Casa Marea</title
+  ><style>
+    :root {
+      --ink: #241f19;
+      --paper: #f4f1eb;
+      --rule: #bbb3a7;
+      --gutter: clamp(20px, 3.4vw, 56px);
+      --serif: Baskerville, "Times New Roman", serif;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, Arial, sans-serif;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    a:focus-visible {
+      outline: 2px solid #c76b33;
+      outline-offset: 3px;
+    }
+    header,
+    main,
+    footer {
+      max-width: 1920px;
+      margin: auto;
+      padding-inline: var(--gutter);
+    }
+    header {
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--rule);
+    }
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+    nav a,
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      font-size: 14px;
+    }
+    .wordmark {
+      gap: 10px;
+      font-weight: 560;
+    }
+    .symbol {
+      display: inline-block;
+      width: 23px;
+      height: 22px;
+      background: repeating-linear-gradient(
+        100deg,
+        var(--ink) 0 2px,
+        transparent 2px 4px
+      );
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    }
+    .mast {
+      padding: 24px 0 30px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    h1,
+    h2,
+    h3,
+    p,
+    figure {
+      margin: 0;
+    }
+    h1 {
+      font: normal clamp(74px, 9.8vw, 180px)/0.9 var(--serif);
+      letter-spacing: -0.072em;
+    }
+    .intro {
+      font-size: 15px;
+      line-height: 1.4;
+      max-width: 232px;
+      margin-bottom: 4px;
+    }
+    .cover {
+      height: clamp(380px, 55vh, 740px);
+      position: relative;
+      background: #724528;
+      overflow: hidden;
+      color: #fff;
+    }
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 54%;
+    }
+    .cover:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(30, 13, 8, 0.55), transparent 48%);
+      pointer-events: none;
+    }
+    .legend {
+      position: absolute;
+      z-index: 1;
+      inset: auto 30px 24px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .label {
+      font:
+        11px/1.4 Menlo,
+        monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .legend h2 {
+      font: italic clamp(52px, 5.4vw, 88px)/1 var(--serif);
+      letter-spacing: -0.045em;
+      margin-top: 4px;
+    }
+    .open {
+      border: 1px solid #e2d8cc;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      min-height: 40px;
+      gap: 20px;
+      font-size: 14px;
+    }
+    .open:hover {
+      background: var(--paper);
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 0;
+      color: #665d53;
+    }
+    .notes {
+      border-top: 1px solid var(--rule);
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 0.8fr 2fr 1fr;
+      gap: 24px;
+      padding: 26px 0 36px;
+      align-items: start;
+    }
+    .notes h3 {
+      font: 400 clamp(27px, 2.5vw, 42px)/1.08 var(--serif);
+      letter-spacing: -0.035em;
+    }
+    .detail {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    footer {
+      border-top: 1px solid var(--rule);
+      padding-block: 32px 64px;
+      display: flex;
+      gap: 10%;
+    }
+    footer p {
+      max-width: 400px;
+      line-height: 1.6;
+    }
+    @media (max-width: 700px) {
+      .mast {
+        display: block;
+        padding: 26px 0 20px;
+      }
+      .intro {
+        margin-top: 16px;
+        max-width: 36ch;
+      }
+      .cover {
+        height: 52vh;
+        min-height: 300px;
+      }
+      .legend {
+        inset: auto 16px 18px;
+      }
+      .legend h2 {
+        font-size: 46px;
+      }
+      .open {
+        font-size: 12px;
+        padding-inline: 12px;
+        gap: 8px;
+      }
+      .notes {
+        grid-template-columns: 1fr;
+      }
+      .caption {
+        gap: 12px;
+      }
+      .caption .label {
+        font-size: 11px;
+      }
+      nav {
+        gap: 12px;
+      }
+      header .wordmark {
+        font-size: 12px;
+      }
+      footer {
+        display: block;
+      }
+      footer p {
+        margin-top: 10px;
+      }
+    }
+  </style>
+  <header>
+    <a class="wordmark" href="#work"
+      ><i class="symbol"></i>Architecture &amp; interiors</a
+    >
+    <nav>
+      <a href="#work">Selected work</a><a href="#practice">The practice</a>
+    </nav>
+  </header>
+  <main>
+    <section id="work" class="mast">
+      <h1>Atelier Serein</h1>
+      <p class="intro">
+        An architecture practice based in Palma, working across the
+        Mediterranean.
+      </p>
+    </section>
+    <figure>
+      <div class="cover">
+        <img
+          src="courtyard.jpg"
+          alt="Late sun on a rose-coloured courtyard framing the Mediterranean Sea"
+        />
+        <div class="legend">
+          <div>
+            <div class="label">Mallorca, Spain &nbsp; / &nbsp; 2025</div>
+            <h2>Casa Marea</h2>
+          </div>
+          <a class="open" href="#notes">Project notes <span>↓</span></a>
+        </div>
+      </div>
+      <figcaption class="caption">
+        <span class="label">Casa Marea &nbsp; / &nbsp; South courtyard</span
+        ><span class="label">Residential</span>
+      </figcaption>
+    </figure>
+    <section class="notes" id="notes">
+      <span class="label">Project notes</span>
+      <h3>A house drawn around a pine tree.</h3>
+      <p class="detail">
+        Three walls shelter the courtyard from the wind and frame a narrow view
+        of the sea.
+      </p>
+    </section>
+  </main>
+  <footer id="practice">
+    <div class="label">The practice</div>
+    <p>
+      Atelier Serein designs houses and quiet public spaces shaped by the light,
+      materials and weather of the Mediterranean.
+    </p>
+  </footer>
+</html>

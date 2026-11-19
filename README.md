@@ -12,18 +12,16 @@
 
 ## product-ui-craft 效果示例
 
-Fieldtone 是为这组示例设计的虚构音频编辑 Agent。以下两张图截自浏览器中的原型。
+### Atelier Serein · 建筑事务所官网
 
-### 产品官网
+首页以一幅陶土色海岸庭院的全景图介绍 Casa Marea。项目标题、地点和项目手记入口叠在照片下沿，向下阅读即可看到建筑师如何围绕一棵松树组织庭院。
 
-第一次来访的录音师可以从首页进入一段港口录音，了解 Agent 如何协助修复噪声。右侧用这段录音的虚构唱片封套作为主视觉。
+![Atelier Serein 首页，暖白刊头下是 Casa Marea 的海岸庭院](examples/product-ui-craft/atelier-serein/preview.png)
 
-![Fieldtone 官网首页，左侧为产品介绍和体验入口，右侧为琥珀色声纹封套](examples/product-ui-craft/fieldtone-landing.png)
+### Marginalia · 引文核对 Agent
 
-### Agent 工作台
+编辑阅读植物随笔时，可以对照正文中高亮的句子和右栏的笔记摘录。展开笔记可读上下文，点击「Insert citation」会将引文编号和脚注插入稿件，也可以撤销。
 
-录音师打开同一段录音后，可以从左侧选择修复建议。图中选中的是 0:48 至 1:03 的风噪。波形高亮对应片段，审核区给出调整原因和衰减量，录音师可以接受修复或保留原声。
+![Marginalia 研究工作台，海蓟图版和随笔居中，右侧是引文核对面板](examples/product-ui-craft/marginalia/preview.png)
 
-![Fieldtone 工作台，双声道波形上高亮待审核片段，下方显示降噪建议和审核操作](examples/product-ui-craft/fieldtone-studio.png)
-
-两张图均为 1440 × 900 的桌面截图。原型已在 Chromium 和 WebKit 的桌面、手机视口验证页面跳转和审核操作。波形和修复建议为演示数据。
+两张效果图均来自按本技能设计的 HTML 原型。下载仓库后，在任一示例目录双击 `index.html` 即可体验。建筑场景和植物插画为生成素材，项目、稿件和引用均为虚构示例。[官网原型](examples/product-ui-craft/atelier-serein/) · [Agent 原型](examples/product-ui-craft/marginalia/)

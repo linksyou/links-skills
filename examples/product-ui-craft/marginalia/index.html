@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Marginalia — Research desk</title
+  ><style>
+    :root {
+      --plum: #342138;
+      --ink: #302338;
+      --muted: #685c6c;
+      --pale: #f1edf4;
+      --rule: #d9d3dc;
+      --paper: #fffefd;
+      --serif: Baskerville, Georgia, serif;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font:
+        15px/1.45 -apple-system,
+        BlinkMacSystemFont,
+        Arial,
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a,
+    button {
+      color: inherit;
+      font: inherit;
+    }
+    a {
+      text-decoration: none;
+    }
+    button {
+      cursor: pointer;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid #b97bc1;
+      outline-offset: 3px;
+    }
+    h1,
+    h2,
+    h3,
+    p,
+    figure,
+    blockquote {
+      margin: 0;
+    }
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 218px 1fr;
+    }
+    .rail {
+      background: var(--plum);
+      color: #fff8ff;
+      padding: 27px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font: 30px/0.95 var(--serif);
+      letter-spacing: -0.05em;
+    }
+    .star {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+    }
+    .rail nav {
+      display: grid;
+      gap: 3px;
+    }
+    .rail nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 5px;
+      color: #f0e5f0;
+      font-size: 14px;
+    }
+    .rail nav a:first-child {
+      background: #513957;
+    }
+    .icon {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .small {
+      font:
+        11px/1.4 Menlo,
+        monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .outline {
+      padding: 24px 5px;
+      border-top: 1px solid #654c68;
+    }
+    .outline .small {
+      color: #d1bcd5;
+    }
+    .outline a {
+      display: block;
+      font-size: 13px;
+      color: #ebdfed;
+      line-height: 1.4;
+      padding: 9px 0;
+    }
+    .outline a:first-of-type {
+      margin-top: 12px;
+    }
+    .profile {
+      margin-top: auto;
+      border-top: 1px solid #614a64;
+      padding-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .avatar {
+      border-radius: 50%;
+      background: #e6d8de;
+      color: #553d53;
+      padding: 7px 9px;
+      font: 16px var(--serif);
+    }
+    .desk {
+      min-width: 0;
+    }
+    .top {
+      height: 72px;
+      padding: 0 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--rule);
+      font-size: 13px;
+    }
+    .top span,
+    .saved {
+      color: var(--muted);
+    }
+    .saved {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(298px, 30%);
+      min-height: calc(100vh - 72px);
+    }
+    article {
+      padding: 48px clamp(24px, 4vw, 88px) 36px;
+      background: var(--paper);
+    }
+    .kicker {
+      color: #72616e;
+    }
+    .title {
+      font: normal clamp(50px, 4.9vw, 83px)/0.96 var(--serif);
+      letter-spacing: -0.053em;
+      margin: 16px 0 14px;
+    }
+    .title em {
+      font-weight: 400;
+    }
+    .deck {
+      font: 18px/1.4 var(--serif);
+      color: #6e606c;
+    }
+    .folio {
+      margin: 24px 0 25px;
+    }
+    .plate {
+      position: relative;
+      background: #f5e7cf;
+      overflow: hidden;
+    }
+    .plate img {
+      display: block;
+      width: 100%;
+      height: clamp(250px, 37vh, 400px);
+      object-fit: cover;
+      object-position: center 45%;
+    }
+    .folio figcaption {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      padding-top: 7px;
+      font: italic 14px var(--serif);
+    }
+    .folio figcaption .small {
+      font-style: normal;
+    }
+    .prose {
+      font:
+        20px/1.54 Georgia,
+        serif;
+    }
+    .prose mark {
+      color: var(--ink);
+      background: #e8dded;
+      padding: 1px 2px;
+    }
+    .ref {
+      font:
+        12px Menlo,
+        monospace;
+      color: #70487b;
+      vertical-align: super;
+    }
+    .footnote {
+      border-top: 1px solid var(--rule);
+      padding-top: 8px;
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .inspector {
+      background: var(--pale);
+      border-left: 1px solid var(--rule);
+      padding: 40px 26px;
+      color: #392e3c;
+    }
+    .agent-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #705479;
+    }
+    .agent-label .star {
+      width: 20px;
+      height: 20px;
+    }
+    .inspector h2 {
+      font: normal 37px/1.05 var(--serif);
+      letter-spacing: -0.05em;
+      margin: 16px 0 10px;
+    }
+    .description {
+      color: #655a69;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .source {
+      margin: 26px 0 16px;
+      padding: 20px;
+      background: #fffdf8;
+      border: 1px solid #d4cbd4;
+      border-radius: 4px;
+    }
+    .source .small {
+      color: #745f77;
+    }
+    .source blockquote {
+      font: italic 27px/1.18 var(--serif);
+      letter-spacing: -0.025em;
+      margin: 18px 0 24px;
+    }
+    .byline {
+      border-top: 1px solid #ded6d8;
+      padding-top: 12px;
+      font-size: 13px;
+    }
+    .byline small {
+      font-size: 12px;
+      display: block;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .insert {
+      width: 100%;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 0;
+      background: var(--plum);
+      color: #fff;
+      border-radius: 4px;
+      font-weight: 550;
+      font-size: 14px;
+    }
+    .insert:hover {
+      background: #53375b;
+    }
+    details {
+      margin-top: 18px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+      font-size: 13px;
+    }
+    summary {
+      cursor: pointer;
+      color: #55465b;
+      padding: 4px 0;
+    }
+    details p {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .status {
+      font-size: 13px;
+      margin: 12px 0;
+      color: var(--muted);
+    }
+    @media (min-width: 1600px) {
+      article {
+        max-width: 960px;
+        justify-self: center;
+        width: 100%;
+      }
+    }
+    @media (max-width: 1100px) {
+      .app {
+        grid-template-columns: 165px 1fr;
+      }
+      .rail {
+        padding-inline: 12px;
+      }
+      .brand {
+        font-size: 24px;
+      }
+      .cols {
+        grid-template-columns: minmax(0, 1fr) 280px;
+      }
+      article {
+        padding-inline: 26px;
+      }
+      .inspector {
+        padding-inline: 20px;
+      }
+    }
+    @media (max-width: 780px) {
+      .app {
+        display: block;
+      }
+      .rail {
+        padding: 14px 20px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .rail nav,
+      .outline {
+        display: none;
+      }
+      .profile {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      .top {
+        height: 50px;
+        padding: 0 20px;
+      }
+      .cols {
+        display: block;
+      }
+      .inspector {
+        border: 0;
+        border-top: 1px solid var(--rule);
+        padding: 24px;
+      }
+      .title {
+        font-size: 52px;
+      }
+      article {
+        padding: 28px 20px;
+      }
+      .folio {
+        margin: 18px 0;
+      }
+      .source {
+        margin: 16px 0;
+      }
+      .plate img {
+        height: 210px;
+      }
+    }
+  </style>
+  <svg style="display: none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="aster" viewBox="0 0 32 32">
+      <g fill="none" stroke="currentColor" stroke-width="2">
+        <path
+          d="M16 1v30M1 16h30M5.4 5.4l21.2 21.2M26.6 5.4L5.4 26.6M10.2 2.1l11.6 27.8M2.1 21.8L29.9 10.2M2.1 10.2l27.8 11.6M10.2 29.9L21.8 2.1"
+        />
+      </g>
+    </symbol>
+    <symbol id="book" viewBox="0 0 24 24">
+      <path
+        d="M3 5c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 1-3-2-6-2-9-1zM12 6v14"
+      />
+    </symbol>
+    <symbol id="paper" viewBox="0 0 24 24">
+      <path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7m-7 4h5" />
+    </symbol>
+  </svg>
+  <div class="app">
+    <aside class="rail">
+      <a class="brand" href="#draft"
+        ><svg class="star"><use href="#aster" /></svg>Marginalia</a
+      >
+      <nav>
+        <a href="#draft"
+          ><svg class="icon"><use href="#book" /></svg>Research desk</a
+        ><a href="#source"
+          ><svg class="icon"><use href="#paper" /></svg>Source notes</a
+        >
+      </nav>
+      <div class="outline">
+        <div class="small">In this essay</div>
+        <a href="#draft">Gardens at the edge</a
+        ><a href="#figure">Plate I · Sea holly</a
+        ><a href="#passage">A shifting shoreline</a>
+      </div>
+      <div class="profile"><span class="avatar">E</span>Eleanor Ward</div>
+    </aside>
+    <main class="desk">
+      <header class="top">
+        <div><span>Research desk &nbsp; / &nbsp;</span> Coastal gardens</div>
+        <div class="saved">Private draft</div>
+      </header>
+      <div class="cols">
+        <article id="draft">
+          <div class="small kicker">Field essay &nbsp; / &nbsp; Botany</div>
+          <h1 class="title">Gardens <em>at the edge</em></h1>
+          <p class="deck">Notes on planting for a changing coast.</p>
+          <figure class="folio" id="figure">
+            <div class="plate">
+              <img
+                src="sea-holly.jpg"
+                alt="Botanical illustration of blue sea holly flowers, leaves and seeds"
+              />
+            </div>
+            <figcaption>
+              <span>Eryngium maritimum</span><span class="small">Plate I</span>
+            </figcaption>
+          </figure>
+          <p id="passage" class="prose">
+            On the edge of the dunes, sea holly grows where the wind strips the
+            soil bare.
+            <mark>Its deep roots anchor the plant in shifting sand.</mark
+            ><sup class="ref" id="reference"></sup> The silver leaves turn the
+            colour of the water at dusk.
+          </p>
+          <div id="footnote" class="footnote" hidden>
+            [1] Eleanor Ward, <i>Shoreline notebook</i>, p. 18.
+          </div>
+        </article>
+        <aside class="inspector" id="source">
+          <div class="agent-label small">
+            <svg class="star"><use href="#aster" /></svg>Research agent
+          </div>
+          <h2>Source check</h2>
+          <p class="description">
+            One passage in your draft matches a note from the coastal archive.
+          </p>
+          <div class="source">
+            <div class="small">Source excerpt</div>
+            <blockquote>
+              “The long taproot holds the plant in place as the sand shifts
+              around it.”
+            </blockquote>
+            <div class="byline">
+              Shoreline notebook<small>Eleanor Ward · Page 18</small>
+            </div>
+          </div>
+          <button type="button" class="insert" id="insert">
+            Insert citation <span aria-hidden="true">↵</span>
+          </button>
+          <p class="status" id="status" aria-live="polite"></p>
+          <details>
+            <summary>View notebook entry</summary>
+            <p>
+              Sea holly, north dune. The long taproot holds the plant in place
+              as the sand shifts around it. Leaves are waxy and pale on the
+              exposed side of the ridge.
+            </p>
+          </details>
+        </aside>
+      </div>
+    </main>
+  </div>
+  <script>
+    const insert = document.querySelector("#insert");
+    const footnote = document.querySelector("#footnote");
+    insert.addEventListener("click", () => {
+      const adding = footnote.hidden;
+      footnote.hidden = !adding;
+      document.querySelector("#reference").textContent = adding ? "[1]" : "";
+      document.querySelector("#status").textContent = adding
+        ? "Citation added to the draft."
+        : "Citation removed.";
+      insert.textContent = adding ? "Undo citation" : "Insert citation ↵";
+    });
+  </script>
+</html>
